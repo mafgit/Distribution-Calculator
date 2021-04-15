@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.1/math.js"
+      integrity="sha512-Fd1dBD9iAiA2a6/hW6aJBbPCFr8ANUt9AS99aeK9vKh1LLRs1N7daoYLZ7qQ76ruhTEuA6wt6nFnHqV+QR1kQw=="
+      crossorigin="anonymous"
+    ></script>
+    <title>Binomial Distribution Calculator</title>
+  </head>
+  <body>
+    <button class="toggle-theme-btn"><i class="fas fa-cloud-moon"></i></button>
+    <div class="calculator-container">
+      <div class="distribution-type">Binomial</div>
+      <div class="parameters">
+        <div class="parameter-field number-of-trials-field">
+          <label>Number of trials (n)</label>
+          <input type="text" type="number" />
+        </div>
+        <div class="parameter-field probability-field">
+          <label>Probability of success (p)</label>
+          <input type="text" type="number" />
+        </div>
+        <div class="parameter-field minimum-x-field">
+          <label>Minimum value of X</label>
+          <input type="text" type="number" />
+        </div>
+        <div class="parameter-field maximum-x-field">
+          <label>Maximum value of X</label>
+          <input type="text" type="number" />
+        </div>
+      </div>
+      <div class="calculation-results hidden">
+        <div class="calculation-result expectation-result">
+          <h4>Expectation:</h4>
+          <p></p>
+        </div>
+        <div class="calculation-result variance-result">
+          <h4>Variance:</h4>
+          <p></p>
+        </div>
+        <div class="calculation-result sd-result">
+          <h4>Standard Devation:</h4>
+          <p></p>
+        </div>
+        <div class="calculation-result probability-result">
+          <h4>Probability:</h4>
+          <p></p>
+        </div>
+      </div>
+      <div class="calculation-btns">
+        <button class="calculate-btn">Calculate</button>
+        <button class="reset-btn">Reset</button>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+    <script src="./dom.js"></script>
+  </body>
+</html>
