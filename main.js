@@ -40,12 +40,12 @@ const binomialDist = (n, p, minX, maxX) => {
 
   if (maxX > n)
     return new Error(
-      'Minimum value of x (minX) must not be greater than the number of trials(n)'
+      'Minimum value of x must not be greater than the number of trials(n)'
     )
 
   if (maxX < minX)
     return new Error(
-      'Minimum value of x (minX) must be greater than or equal to Maximum value of x (maxX)'
+      'Minimum value of x must not be greater than the maximum value of x'
     )
 
   let expectation = n * p
