@@ -6,7 +6,7 @@ window.onload = () => {
   if (['dark', 'light'].includes(theme)) document.body.classList.add(theme)
 }
 
-let calculateBtn = $('.calculate-btn')
+let form = $('.calculator-container')
 let resetBtn = $('.reset-btn')
 let calculationResults = $('.calculation-results')
 let isCalculated = false
@@ -27,17 +27,22 @@ const toggleResults = (action) => {
 resetBtn.onclick = (e) => {
   $('.number-of-trials-field input').value = ''
   $('.probability-field input').value = ''
-  $('.minimum-x-field input').value = ''
-  $('.maximum-x-field input').value = ''
+  $('.min-x-input').value = ''
+  $('.max-x-input').value = ''
   toggleResults('close')
 }
 
-calculateBtn.onclick = (e) => {
+form.onsubmit = (e) => {
+  e.preventDefault()
   let n = parseFloat($('.number-of-trials-field input').value)
   let p = parseFloat($('.probability-field input').value)
-  let minX = parseFloat($('.minimum-x-field input').value)
-  let maxX = parseFloat($('.maximum-x-field input').value)
-  if ([n, p, minX].includes(NaN)) {
+  let minX = parseFloat($('.min-x-input').value)
+  let maxX = parseFloat($('.max-x-input').value)
+
+  if (isNaN(minX)) minX = 0
+  if (isNaN(maxX)) maxX = n
+
+  if ([n, p].includes(NaN)) {
     alert('Fill the required fields')
   } else {
     const { message, expectation, sd, variance, probability } = binomialDist(
@@ -73,3 +78,27 @@ toggleThemeBtn.onclick = (e) => {
   document.body.classList.toggle('light')
   return window.localStorage.setItem('theme', theme)
 }
+
+let distType = 'binomial'
+let distOptions = ['binomial', 'geometric']
+let dropdown = $('.dropdown')
+let distTypeBtn = $('.distribution-type')
+let distTypes = dropdown.querySelectorAll('.dropdown-item')
+
+distTypeBtn.onclick = (e) => {
+  dropdown.classList.toggle('hidden')
+}
+
+distTypes.forEach((type) => {
+  type.onclick = (e) => {
+    dropdown.classList.add('hidden')
+    let t = e.target.dataset.distType
+    if (t !== distType) {
+      distType = t
+      $('.distribution-type-name').innerText = e.target.innerText
+      return changeDistType(t)
+    }
+  }
+})
+
+const changeDistType = (type) => {}

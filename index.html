@@ -20,24 +20,34 @@
   </head>
   <body>
     <button class="toggle-theme-btn"><i class="fas fa-cloud-moon"></i></button>
-    <div class="calculator-container">
-      <div class="distribution-type">Binomial</div>
+    <form class="calculator-container">
+      <div class="dropdown-container" tabindex="1">
+        <div class="distribution-type">
+          <p class="distribution-type-name">Binomial</p>
+          <i class="fa fa-chevron-down"></i>
+        </div>
+        <ul class="dropdown hidden">
+          <li class="dropdown-item active-item" data-dist-type="binomial">
+            Binomial
+          </li>
+          <li class="dropdown-item" data-dist-type="geometric">Geometric</li>
+        </ul>
+      </div>
       <div class="parameters">
         <div class="parameter-field number-of-trials-field">
           <label>Number of trials (n)</label>
-          <input type="text" type="number" />
+          <input type="number" type="number" />
         </div>
         <div class="parameter-field probability-field">
           <label>Probability of success (p)</label>
-          <input type="text" type="number" />
+          <input type="number" type="number" max="1" min="0" step="any" />
         </div>
-        <div class="parameter-field minimum-x-field">
-          <label>Minimum value of X</label>
-          <input type="text" type="number" />
-        </div>
-        <div class="parameter-field maximum-x-field">
-          <label>Maximum value of X</label>
-          <input type="text" type="number" />
+        <div class="parameter-field range-x">
+          <input type="number" class="min-x-input" placeholder="0" min="0" />
+          <label>&leq;</label>
+          <label>X</label>
+          <label>&leq;</label>
+          <input type="number" class="max-x-input" placeholder="n" />
         </div>
       </div>
       <div class="calculation-results hidden">
@@ -59,10 +69,10 @@
         </div>
       </div>
       <div class="calculation-btns">
-        <button class="calculate-btn">Calculate</button>
-        <button class="reset-btn">Reset</button>
+        <button class="calculate-btn" type="submit">Calculate</button>
+        <button class="reset-btn" type="button">Reset</button>
       </div>
-    </div>
+    </form>
     <script src="./main.js"></script>
     <script src="./dom.js"></script>
   </body>

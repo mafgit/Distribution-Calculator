@@ -32,18 +32,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   transition: 0.2s;
 }
 
 input,
 button,
-textarea {
+textarea,
+a {
   font-size: inherit;
   border: none;
   outline: none;
   font-family: inherit;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+ul,
+li,
+a {
+  list-style: none;
+  text-decoration: none;
 }
 
 button {
@@ -64,8 +82,17 @@ button {
 .distribution-type {
   background-color: var(--box-bg);
   padding: 7px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.distribution-type i {
+  margin-left: 5px;
+  font-size: 12px;
 }
 
 .parameters {
@@ -95,6 +122,10 @@ button {
 
 .parameter-field label {
   font-size: 1.1rem;
+}
+
+.parameter-field.range-x input {
+  margin-left: 0;
 }
 
 .calculation-results {
@@ -140,7 +171,7 @@ button {
   background-color: var(--blue-btn);
   color: #fff;
   padding: 7px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 0 5px;
 }
 
@@ -165,4 +196,44 @@ button {
 button:hover {
   filter: brightness(0.8);
   transition: filter 0.3s;
+}
+
+.dropdown {
+  background-color: var(--box-bg);
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.dropdown-item {
+  border-radius: 3px;
+  padding: 5px;
+  background-color: var(--box-bg);
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.dropdown-item.active-item {
+  background-color: var(--blue-btn);
+  color: white;
+}
+
+.dropdown-item:not(.active-item):hover {
+  background-color: var(--calculator-bg);
+  transition: 0.3s;
+}
+
+.dropdown-container {
+  position: relative;
+  outline: none;
+}
+
+/* .dropdown-container:focus-within .dropdown {
+} */
+
+.dropdown-container:not(:focus-within) .dropdown,
+.dropdown.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: none;
 }
