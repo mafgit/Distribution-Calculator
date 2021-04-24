@@ -110,13 +110,10 @@ button {
   margin: 5px 0;
 }
 
-.geometric-parameters .number-of-trials-field input::placeholder,
+/* .geometric-parameters .number-of-trials-field input::placeholder,
 .geometric-parameters .number-of-trials-field input::-webkit-input-placeholder {
-  font-size: 25px;
   vertical-align: middle;
-  position: relative;
-  top: 3px;
-}
+} */
 
 .parameter-field input {
   border-radius: 5px;
