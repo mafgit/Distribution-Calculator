@@ -110,15 +110,12 @@ button {
   margin: 5px 0;
 }
 
-.geometric-parameters .max-x-input {
+.geometric-parameters .number-of-trials-field input::placeholder,
+.geometric-parameters .number-of-trials-field input::-webkit-input-placeholder {
+  font-size: 25px;
+  vertical-align: middle;
   position: relative;
-}
-
-.geometric-parameters .number-of-trials-field input::placeholder {
-  font-size: 30px;
-  position: absolute;
-  left: 10px;
-  top: -2px;
+  top: 3px;
 }
 
 .parameter-field input {
