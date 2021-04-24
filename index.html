@@ -16,7 +16,7 @@
       integrity="sha512-Fd1dBD9iAiA2a6/hW6aJBbPCFr8ANUt9AS99aeK9vKh1LLRs1N7daoYLZ7qQ76ruhTEuA6wt6nFnHqV+QR1kQw=="
       crossorigin="anonymous"
     ></script>
-    <title>Binomial Distribution Calculator</title>
+    <title>Distribution Calculator</title>
   </head>
   <body>
     <button class="toggle-theme-btn"><i class="fas fa-cloud-moon"></i></button>
@@ -33,7 +33,7 @@
           <li class="dropdown-item" data-dist-type="geometric">Geometric</li>
         </ul>
       </div>
-      <div class="parameters">
+      <div class="parameters binomial-parameters">
         <div class="parameter-field number-of-trials-field">
           <label>Number of trials (n)</label>
           <input type="number" type="number" />
@@ -47,7 +47,24 @@
           <label>&leq;</label>
           <label>X</label>
           <label>&leq;</label>
-          <input type="number" class="max-x-input" placeholder="n" />
+          <input type="number" class="max-x-input" placeholder="n" min="0" />
+        </div>
+      </div>
+      <div class="parameters geometric-parameters" style="display: none">
+        <div class="parameter-field number-of-trials-field">
+          <label>Number of trials (n)</label>
+          <input type="number" type="number" placeholder="∞" />
+        </div>
+        <div class="parameter-field probability-field">
+          <label>Probability of success (p)</label>
+          <input type="number" type="number" max="1" min="0" step="any" />
+        </div>
+        <div class="parameter-field range-x">
+          <input type="number" class="min-x-input" placeholder="0" min="0" />
+          <label>&leq;</label>
+          <label>X</label>
+          <label>&leq;</label>
+          <input type="number" class="max-x-input" placeholder="n" min="0" />
         </div>
       </div>
       <div class="calculation-results hidden">

@@ -110,6 +110,17 @@ button {
   margin: 5px 0;
 }
 
+.geometric-parameters .max-x-input {
+  position: relative;
+}
+
+.geometric-parameters .number-of-trials-field input::placeholder {
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: -2px;
+}
+
 .parameter-field input {
   border-radius: 5px;
   text-align: center;
@@ -122,6 +133,10 @@ button {
 
 .parameter-field label {
   font-size: 1.1rem;
+}
+
+.parameter-field:not(.range-x) label {
+  max-width: 230px;
 }
 
 .parameter-field.range-x input {

@@ -10,7 +10,14 @@ let form = $('.calculator-container')
 let resetBtn = $('.reset-btn')
 let calculationResults = $('.calculation-results')
 let isCalculated = false
+let distType = 'binomial'
+
 resetBtn.style.display = 'none'
+
+let expectationResult = $('.expectation-result p')
+let sdResult = $('.sd-result p')
+let varianceResult = $('.variance-result p')
+let probabilityResult = $('.probability-result p')
 
 const toggleResults = (action) => {
   if (action === 'open') {
@@ -24,7 +31,7 @@ const toggleResults = (action) => {
   }
 }
 
-resetBtn.onclick = (e) => {
+const resetFields = () => {
   $('.number-of-trials-field input').value = ''
   $('.probability-field input').value = ''
   $('.min-x-input').value = ''
@@ -32,38 +39,67 @@ resetBtn.onclick = (e) => {
   toggleResults('close')
 }
 
+resetBtn.onclick = () => resetFields()
+
 form.onsubmit = (e) => {
   e.preventDefault()
-  let n = parseFloat($('.number-of-trials-field input').value)
-  let p = parseFloat($('.probability-field input').value)
-  let minX = parseFloat($('.min-x-input').value)
-  let maxX = parseFloat($('.max-x-input').value)
-
-  if (isNaN(minX)) minX = 0
-  if (isNaN(maxX)) maxX = n
-
-  if ([n, p].includes(NaN)) {
-    alert('Fill the required fields')
-  } else {
-    const { message, expectation, sd, variance, probability } = binomialDist(
-      n,
-      p,
-      minX,
-      maxX
+  if (distType === 'binomial') {
+    let n = parseFloat(
+      $('.binomial-parameters .number-of-trials-field input').value
     )
-    if (message) {
-      alert(message)
-      return
+    let p = parseFloat($('.binomial-parameters .probability-field input').value)
+    let minX = parseFloat($('.binomial-parameters .min-x-input').value)
+    let maxX = parseFloat($('.binomial-parameters .max-x-input').value)
+
+    if ([n, p].includes(NaN)) {
+      alert('Fill the required fields')
     } else {
-      let expectationResult = $('.expectation-result p')
-      let sdResult = $('.sd-result p')
-      let varianceResult = $('.variance-result p')
-      let probabilityResult = $('.probability-result p')
-      expectationResult.innerText = expectation
-      sdResult.innerText = sd
-      varianceResult.innerText = variance
-      probabilityResult.innerText = probability
-      return toggleResults('open')
+      const { message, expectation, sd, variance, probability } = binomialDist(
+        n,
+        p,
+        minX,
+        maxX
+      )
+      if (message) {
+        alert(message)
+        return
+      } else {
+        expectationResult.innerText = expectation
+        sdResult.innerText = sd
+        varianceResult.innerText = variance
+        probabilityResult.innerText = probability
+        return toggleResults('open')
+      }
+    }
+  } else if (distType === 'geometric') {
+    let n = parseFloat(
+      $('.geometric-parameters .number-of-trials-field input').value
+    )
+    let p = parseFloat(
+      $('.geometric-parameters .probability-field input').value
+    )
+    let minX = parseFloat($('.geometric-parameters .min-x-input').value)
+    let maxX = parseFloat($('.geometric-parameters .max-x-input').value)
+
+    if (isNaN(p)) {
+      alert('Fill the required fields (p)')
+    } else {
+      const { message, expectation, sd, variance, probability } = geometricDist(
+        n,
+        p,
+        minX,
+        maxX
+      )
+      if (message) {
+        alert(message)
+        return
+      } else {
+        expectationResult.innerText = expectation
+        sdResult.innerText = sd
+        varianceResult.innerText = variance
+        probabilityResult.innerText = probability
+        return toggleResults('open')
+      }
     }
   }
 }
@@ -79,7 +115,6 @@ toggleThemeBtn.onclick = (e) => {
   return window.localStorage.setItem('theme', theme)
 }
 
-let distType = 'binomial'
 let distOptions = ['binomial', 'geometric']
 let dropdown = $('.dropdown')
 let distTypeBtn = $('.distribution-type')
@@ -101,4 +136,17 @@ distTypes.forEach((type) => {
   }
 })
 
-const changeDistType = (type) => {}
+const changeDistType = (type) => {
+  resetFields()
+  distOptions.forEach((i) => {
+    $(`.${i}-parameters`).style.display = 'none'
+  })
+
+  distTypes.forEach((i) => {
+    if (i.dataset.distType === type) {
+      i.classList.add('active-item')
+    } else i.classList.remove('active-item')
+  })
+
+  $(`.${type}-parameters`).style.display = 'flex'
+}
